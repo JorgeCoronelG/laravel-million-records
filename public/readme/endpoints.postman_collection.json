@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "ed8f259d-f127-4921-82be-e784c3cac9c3",
+		"name": "Laravel API one million records",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4845654",
+		"_collection_link": "https://galactic-star-433296.postman.co/workspace/Ciudad-maderas~b3e80cf3-303b-4e0b-87e5-9b9c81c30968/collection/4845654-ed8f259d-f127-4921-82be-e784c3cac9c3?action=share&source=collection_link&creator=4845654"
+	},
+	"item": [
+		{
+			"name": "Registro de nuevo usuario",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost/Proyectos/laravel-million-records/public/sanctum/csrf-cookie',",
+							"    method: 'GET'",
+							"}, function (error, response, {cookies}) {",
+							"    if (!error){",
+							"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'))",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jorge Coronel\",\n    \"email\": \"jorgecoronel@gmail.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/Proyectos/laravel-million-records/public/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Proyectos",
+						"laravel-million-records",
+						"public",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost/Proyectos/laravel-million-records/public/sanctum/csrf-cookie',",
+							"    method: 'GET'",
+							"}, function (error, response, {cookies}) {",
+							"    if (!error){",
+							"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'))",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jorgecoronel@gmail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/Proyectos/laravel-million-records/public/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Proyectos",
+						"laravel-million-records",
+						"public",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enviar archivo",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost/Proyectos/laravel-million-records/public/sanctum/csrf-cookie',",
+							"    method: 'GET'",
+							"}, function (error, response, {cookies}) {",
+							"    if (!error){",
+							"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'))",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|OxNN9pjiv3Z34hsoTPLRD6DCbRuhXslg7pX4p9um65f28000",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/jorgecoronel/Downloads/one_million_records.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/Proyectos/laravel-million-records/public/api/import-analytics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Proyectos",
+						"laravel-million-records",
+						"public",
+						"api",
+						"import-analytics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estatus de la carga",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost/Proyectos/laravel-million-records/public/sanctum/csrf-cookie',",
+							"    method: 'GET'",
+							"}, function (error, response, {cookies}) {",
+							"    if (!error){",
+							"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'))",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|OxNN9pjiv3Z34hsoTPLRD6DCbRuhXslg7pX4p9um65f28000",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/Proyectos/laravel-million-records/public/api/import-status/9d3b2d5b-6a5e-466e-aa40-987307f1c12e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Proyectos",
+						"laravel-million-records",
+						"public",
+						"api",
+						"import-status",
+						"9d3b2d5b-6a5e-466e-aa40-987307f1c12e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
